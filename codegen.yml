@@ -1,0 +1,12 @@
+require:
+  - ts-node/register/transpile-only
+schema: './src/controllers/graphql/**/type-defs.ts'
+generates:
+  ./src/models/models.ts:
+    config:
+      typesSuffix: Model
+      declarationKind: class
+      skipTypename: true
+      ignoreEnumValuesFromSchema: true
+    plugins:
+      - typescript

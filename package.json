@@ -10,7 +10,8 @@
     "test": "jest",
     "lint": "eslint . --ext .ts",
     "lint-prettier": "npx prettier --check './src'",
-    "generate-types": "graphql-codegen --config ./codegen.yml"
+    "generate-types": "graphql-codegen --config ./codegen.yml",
+    "serve": "sls offline"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^2.6.2",
@@ -18,6 +19,7 @@
     "@graphql-codegen/typescript-resolvers": "^2.6.4",
     "@types/aws-lambda": "^8.10.97",
     "@types/jest": "^27.5.1",
+    "@types/lodash.merge": "^4.6.7",
     "@typescript-eslint/eslint-plugin": "^5.25.0",
     "@typescript-eslint/parser": "^5.25.0",
     "dotenv": "^16.0.1",
@@ -34,8 +36,11 @@
     "typescript": "^4.6.4"
   },
   "dependencies": {
+    "@apollo/federation": "^0.36.1",
     "apollo-server-lambda": "^3.7.0",
     "graphql": "^16.5.0",
+    "lodash.merge": "^4.6.2",
+    "type-graphql": "^1.1.1",
     "typeorm": "^0.3.6",
     "typeorm-aurora-data-api-driver": "^2.4.2"
   }

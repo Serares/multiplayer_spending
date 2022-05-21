@@ -1,0 +1,2 @@
+lambda:
+  handler: src/controllers/graphql/apollo-handler/graphql.handler

@@ -1,0 +1,11 @@
+service: spending-api
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  region: eu-central-1
+  runtime: nodejs16.x
+functions:
+  graphql: ${file(src/controllers/graphql/apollo-handler/serverless.function.yml):lambda}

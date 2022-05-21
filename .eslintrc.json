@@ -1,4 +1,5 @@
 {
+  "ignorePatterns": "src/models/models.ts",
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
@@ -24,7 +25,8 @@
         "lines-between-class-members": "off",
         "class-methods-use-this": "warn",
         "dot-notation": "warn",
-        "prefer-destructuring": "warn"
+        "prefer-destructuring": "warn",
+        "import/prefer-default-export": "off"
       }
     },
     {

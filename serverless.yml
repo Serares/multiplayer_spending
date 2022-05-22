@@ -1,11 +1,34 @@
 service: spending-api
 
 plugins:
+  - serverless-bundle
   - serverless-offline
+  - serverless-dotenv-plugin
+  - serverless-iam-roles-per-function
+
+custom:
+  serverless-offline:
+    port: 4000
+  bundle:
+    linting: false
 
 provider:
   name: aws
   region: eu-central-1
   runtime: nodejs16.x
+
 functions:
-  graphql: ${file(src/controllers/graphql/apollo-handler/serverless.function.yml):lambda}
+  graphql:
+    handler: src/controllers/graphql/apollo-handler/graphql.handler
+    events:
+      - http:
+          path: graphql
+          method: post
+          cors: true
+          integration: lambda-proxy
+
+      - http:
+          path: graphql
+          method: get
+          cors: true
+          integration: lambda-proxy

@@ -3,3 +3,4 @@ dist
 .serverless
 build
 .env
+.webpack

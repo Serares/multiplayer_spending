@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "noImplicitAny": false,
     "sourceMap": true,
     "target": "es2017",
     "allowJs": true,
@@ -10,7 +11,7 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "module": "esnext",
-    "lib": ["ES2019", "dom"],
+    "lib": ["ES2019", "dom", "esnext.asynciterable"],
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,

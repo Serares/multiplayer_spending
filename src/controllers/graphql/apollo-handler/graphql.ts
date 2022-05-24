@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { ApolloServer, gql } from 'apollo-server-lambda';
 import User from '../users/type-defs';
 import { resolver as userResolver } from '../users/users.schema';
@@ -8,8 +9,7 @@ import { services } from '../../../services/services';
 import { buildSchema } from 'type-graphql';
 
 const schema = await buildSchema({
-  typeDefs: [User],
-  resolvers: merge(userResolver),
+  resolvers: [userResolver],
 });
 
 const server = new ApolloServer({

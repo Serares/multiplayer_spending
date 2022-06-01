@@ -1,0 +1,13 @@
+postgres:
+  connection:
+    type: aurora-data-api-pg
+    database: spending_dev
+    secret: /secrets/api/database/
+    secretReadOnly: /secrets/api/database-readonly/
+    resourceArn: ''
+    region: eu-central-1
+    host: ''
+    port: ''
+    username: ''
+    password: ''
+  logging: false

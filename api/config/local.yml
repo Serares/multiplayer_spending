@@ -1,0 +1,13 @@
+postgres:
+  connection:
+    type: postgres
+    database: spending_local
+    secret: ''
+    secretReadOnly: /secrets/api/database-readonly/
+    resourceArn: ''
+    region: ''
+    host: localhost
+    port: 5432
+    username: postgres
+    password: password
+  logging: false

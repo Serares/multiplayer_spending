@@ -5,7 +5,7 @@ plugins:
   - serverless-offline
   - serverless-dotenv-plugin
   - serverless-iam-roles-per-function
-
+  - serverless-prune-plugin
 custom:
   serverless-offline:
     port: 4000
@@ -19,7 +19,7 @@ provider:
 
 functions:
   graphql:
-    handler: src/controllers/graphql/apollo-handler/graphql.handler
+    handler: ${file(src/controllers/graphql/apollo-handler/graphql.handler)}
     events:
       - http:
           path: graphql
@@ -32,3 +32,5 @@ functions:
           method: get
           cors: true
           integration: lambda-proxy
+custom:
+  postgres: $(file(./config/${opt:stage, 'dev'}.yml):postgres))

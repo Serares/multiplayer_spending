@@ -1,0 +1,11 @@
+{
+    "type": "postgres",
+    "host": "localhost",
+    "port": 49153,
+    "username": "postgres",
+    "password": "postgres",
+    "database": "spending_local",
+    "entities": ["src/repositories/entities/*.ts"],
+    "migrations": ["src/repositories/migrations/*.ts"]
+  }
+  

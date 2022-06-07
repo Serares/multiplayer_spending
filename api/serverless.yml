@@ -6,16 +6,12 @@ plugins:
   - serverless-dotenv-plugin
   - serverless-iam-roles-per-function
   - serverless-prune-plugin
-custom:
-  serverless-offline:
-    port: 4000
-  bundle:
-    linting: false
 
 provider:
   name: aws
   region: eu-central-1
   runtime: nodejs16.x
+  stage: $(opt:stage, 'local')
 
 functions:
   graphql:
@@ -32,5 +28,10 @@ functions:
           method: get
           cors: true
           integration: lambda-proxy
+
 custom:
   postgres: $(file(./config/${opt:stage, 'dev'}.yml):postgres))
+  serverless-offline:
+    port: 4000
+  bundle:
+    linting: false

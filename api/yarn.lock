@@ -4639,11 +4639,6 @@ dot-prop@^5.2.0:
   dependencies:
     is-obj "^2.0.0"
 
-dotenv-expand@^8.0.3:
-  version "8.0.3"
-  resolved "https://registry.yarnpkg.com/dotenv-expand/-/dotenv-expand-8.0.3.tgz#29016757455bcc748469c83a19b36aaf2b83dd6e"
-  integrity sha512-SErOMvge0ZUyWd5B0NXMQlDkN+8r+HhVUsxgOO7IoPDOdDRD2JjExpN6y3KnFR66jsJMwSn1pqIivhU5rcJiNg==
-
 dotenv@^16.0.0, dotenv@^16.0.1:
   version "16.0.1"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.0.1.tgz#8f8f9d94876c35dac989876a5d3a82a267fdce1d"
@@ -9754,15 +9749,6 @@ serverless-bundle@^5.3.0:
     webpack-bundle-analyzer "^4.5.0"
     webpack-node-externals "^2.5.2"
     webpack-permissions-plugin "^1.0.8"
-
-serverless-dotenv-plugin@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/serverless-dotenv-plugin/-/serverless-dotenv-plugin-4.0.1.tgz#a86a008346df88ed15fd2ce92255359d43394b35"
-  integrity sha512-PwFPRyHmXransKZMvbdgUkW79hm6RAY9ZZsI2k3NiflUJ/d/j3EbhSshPeRCLSgDeCeBwIg43yUhew0KkXc3zA==
-  dependencies:
-    chalk "^4.1.2"
-    dotenv "^16.0.1"
-    dotenv-expand "^8.0.3"
 
 serverless-iam-roles-per-function@^3.2.0:
   version "3.2.0"

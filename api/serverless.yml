@@ -3,7 +3,6 @@ service: spending-api
 plugins:
   - serverless-bundle
   - serverless-offline
-  - serverless-dotenv-plugin
   - serverless-iam-roles-per-function
   - serverless-prune-plugin
 
@@ -35,3 +34,11 @@ custom:
     port: 4000
   bundle:
     linting: false
+    excludeFiles: '**.*.test.ts'
+    tsConfig: tsconfig.json
+    packager: yarn
+    ignorePackages:
+      - pg-native
+    aliases:
+      - 'typeorm': './node_modules/typeorm/browser' # see https://github.com/typeorm/typeorm/issues/8714
+    

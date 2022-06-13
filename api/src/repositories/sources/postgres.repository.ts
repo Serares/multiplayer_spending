@@ -1,14 +1,17 @@
+import { fetchSecretArn } from 'lib/fetchSecretsArn';
 import { Category } from 'src/controllers/graphql/entities/Category.entity';
 import { Transaction } from 'src/controllers/graphql/entities/Transaction.entity';
 import { User } from 'src/controllers/graphql/entities/User.entity';
 import {
-  createConnection,
   DataSource,
+  DataSourceOptions,
   DeleteResult,
   EntityTarget,
   FindOptionsWhere,
   Repository,
 } from 'typeorm';
+import { AuroraPostgresConnectionOptions } from 'typeorm/driver/aurora-postgres/AuroraPostgresConnectionOptions';
+import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 import { AbstractRepository, BaseRepository } from './base-repository';
 
 export interface PostgresRepository<M> extends AbstractRepository<M> {
@@ -41,14 +44,39 @@ export class PostgresRepositoryImpl<M>
     this.connect();
   }
 
-  private connect(): void {
-    const connection = new DataSource({
-      type: process.env.POSTGRES_CONNECTION,
+  private async connect(): Promise<void> {
+    const isLogging = process.env.POSTGRES_LOGGING === 'true';
+    let connection;
+    //@ts-ignore TODO
+    let connectionOptions: DataSourceOptions = {
+      type: process.env.POSTGRES_CONNECTION as
+        | PostgresConnectionOptions['type']
+        | AuroraPostgresConnectionOptions['type'],
       database: process.env.POSTGRES_DATABASE,
       synchronize: false,
-      logging: false,
-      entity: this.entity,
-    });
+      logging: isLogging,
+      entities: Object.values(PostgresRepositoryImpl.SUPORTED_ENTITIES),
+    };
+    if (connectionOptions.type === 'postgres') {
+      connection = new DataSource({
+        ...connectionOptions,
+        host: process.env.POSTGRES_HOST,
+        port: Number(process.env.POSTGRES_PORT),
+        username: process.env.POSTGRES_USERNAME,
+        password: process.env.POSTGRES_PASSWORD,
+      });
+    } else if (connectionOptions.type === 'aurora-postgres') {
+      const secretArn = await fetchSecretArn();
+
+      connection = new DataSource({
+        ...connectionOptions,
+        resourceArn: process.env.POSTGRES_RESOURCE_ARN as string,
+        region: process.env.POSTGRES_REGION as string,
+        secretArn,
+      });
+    } else {
+      console.error('No connection type found');
+    }
 
     this.dataSource = connection;
     this.entityRepository = connection.getRepository(this.entity);

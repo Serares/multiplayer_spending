@@ -1,5 +1,9 @@
 import { UserService } from './users/users.service';
 
+const userService = new UserService();
+
 export const services = {
-  UserService,
+  userService,
 };
+
+export type GQLServices = typeof services;

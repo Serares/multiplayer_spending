@@ -78,7 +78,7 @@ export class UserResolver {
     }
 
     const userIdNum = parseInt(userId);
-    const user = await User.findOne(userIdNum);
+    const user = await services.userService.changePassword(userIdNum);
 
     if (!user) {
       return {
@@ -111,7 +111,7 @@ export class UserResolver {
     @Arg('email') email: string,
     @Ctx() { redis }: MyContext
   ) {
-    const user = await User.findOne({ where: { email } });
+    const user = await services..findOne({ where: { email } });
     if (!user) {
       // the email is not in the db
       return true;

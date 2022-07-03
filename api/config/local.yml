@@ -7,7 +7,7 @@ postgres:
     resourceArn: ''
     region: ''
     host: localhost
-    port: 49153
+    port: 5432
     username: postgres
-    password: password
+    password: postgres
   logging: false

@@ -17,12 +17,12 @@ export class Transaction extends BaseEntity {
   id!: number;
 
   @Field()
-  @Column({ unique: true })
-  username!: string;
+  @Column()
+  description: string;
 
   @Field()
-  @Column({ unique: true })
-  email!: string;
+  @Column()
+  category!: string;
 
   @Column()
   password!: string;

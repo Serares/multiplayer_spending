@@ -11,3 +11,13 @@ postgres:
     username: postgres
     password: postgres
   logging: false
+graphql:
+  triggers:
+    - http:
+          path: /graphql
+          method: POST
+          cors: true
+    - http:
+          path: /graphql
+          method: GET
+          cors: true

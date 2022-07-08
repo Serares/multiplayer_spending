@@ -1,7 +1,7 @@
 import { fetchSecretArn } from 'lib/fetchSecretsArn';
-import { Category } from 'src/controllers/graphql/entities/Category.entity';
-import { Transaction } from 'src/controllers/graphql/entities/Transaction.entity';
-import { User } from 'src/controllers/graphql/entities/User.entity';
+import { Category } from 'src/repositories/entities/Category.entity';
+import { Transaction } from 'src/repositories/entities/Transaction.entity';
+import { User } from 'src/repositories/entities/User.entity';
 import {
   DataSource,
   DataSourceOptions,

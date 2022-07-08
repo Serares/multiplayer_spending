@@ -1,10 +1,10 @@
 DependsOn: ServerlessVPCGA
 Type: AWS::RDS::DBInstance
 Properties:
-  MasterUsername: ${self:custom.USERNAME}
-  MasterUserPassword: ${self:custom.PASSWORD}
+  MasterUsername: ${self:custom.postgres.connection.username}
+  MasterUserPassword: ${self:custom.postgres.connection.password}
   AllocatedStorage: 20
-  DBName: ${self:custom.DB_NAME}
+  DBName: ${self:custom.postgres.connection.database}
   DBInstanceClass: db.t4g.small
   VPCSecurityGroups:
   - !GetAtt ServerlessSecurityGroup.GroupId

@@ -13,37 +13,30 @@ provider:
   stage: $(opt:stage, 'local')
 
 environment:
-  POSTGRES_CONNECTION: $(self.custom.postgres.connection.type)
-  POSTGRES_HOST: $(self.custom.postgres.connection.host)
-  POSTGRES_DATABASE: $(self.custom.postgres.connection.database)
-  POSTGRES_PORT: $(self.custom.postgres.connection.port)
-  POSTGRES_USERNAME: $(self.custom.postgres.connection.username)
-  POSTGRES_PASSWORD: $(self.custom.postgres.connection.password)
-  POSTGRES_SECRET: $(self.custom.postgres.connection.secret)
-  POSTGRES_SECRET_READONLY: $(self.custom.postgres.connection.secretReadOnly)
-  POSTGRES_RESOURCE_ARN: $(self.custom.postgres.connection.resourceArn)
-  POSTGRES_REGION: $(self.custom.postgres.connection.region)
+  POSTGRES_CONNECTION: ${self:custom.postgres.connection.type}
+  POSTGRES_HOST: ${self:custom.postgres.connection.host}
+  POSTGRES_DATABASE: ${self:custom.postgres.connection.database}
+  POSTGRES_PORT: ${self:custom.postgres.connection.port}
+  POSTGRES_USERNAME: ${self:custom.postgres.connection.username}
+  POSTGRES_PASSWORD: ${self:custom.postgres.connection.password}
+  POSTGRES_SECRET: ${self:custom.postgres.connection.secret}
+  POSTGRES_SECRET_READONLY: ${self:custom.postgres.connection.secretReadOnly}
+  POSTGRES_RESOURCE_ARN: ${self:custom.postgres.connection.resourceArn}
+  POSTGRES_REGION: ${self:custom.postgres.connection.region}
+
 
 functions:
-  graphql:
-    handler: ${file(src/controllers/graphql/apollo-handler/graphql.handler)}
-    events:
-      - http:
-          path: graphql
-          method: post
-          cors: true
-          integration: lambda-proxy
-
-      - http:
-          path: graphql
-          method: get
-          cors: true
-          integration: lambda-proxy
+  graphql: ${file(src/controllers/graphql/apollo-handler/serverless.function.yml):lambda}
+      
+resources:
+  - ${file(deploy/resources/PostgreSqlRDSInstance.yml)}
 
 custom:
-  postgres: $(file(./config/${opt:stage, 'dev'}.yml):postgres))
+  postgres: ${file(./config/${opt:stage, 'local'}.yml):postgres)}
+  graphql: ${file(./config/${opt:stage, 'local'}.yml):graphql)}
   serverless-offline:
     port: 4000
+    allowCache: true
   bundle:
     linting: false
     excludeFiles: '**.*.test.ts'

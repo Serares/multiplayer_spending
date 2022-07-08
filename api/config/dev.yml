@@ -11,3 +11,5 @@ postgres:
     username: ''
     password: ''
   logging: false
+graphql:
+  triggers: []

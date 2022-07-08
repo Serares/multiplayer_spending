@@ -1,7 +1,7 @@
 {
     "type": "postgres",
     "host": "localhost",
-    "port": 49153,
+    "port": 5432,
     "username": "postgres",
     "password": "postgres",
     "database": "spending_local",

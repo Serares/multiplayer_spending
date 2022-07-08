@@ -13,7 +13,7 @@ import {
 import type { GQLContext } from '../../../../../lib/types';
 import argon2 from 'argon2';
 import { v4 } from 'uuid';
-import { User } from '../../entities/User.entity';
+import { User } from '../../../../repositories/entities/User.entity';
 
 @InputType()
 export class UsernamePasswordInput {

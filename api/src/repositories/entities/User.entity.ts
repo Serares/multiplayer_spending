@@ -4,11 +4,13 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToMany,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { Transaction } from './Transaction.entity';
+import { Comment } from './Comment.entity';
 
 @ObjectType()
 @Entity()
@@ -28,11 +30,11 @@ export class User extends BaseEntity {
   @Column()
   password!: string;
 
-  @OneToMany(() => Transaction, (transaction) => transaction.user)
+  @ManyToMany(() => Transaction, (transaction) => transaction.user)
   transactions: Transaction[];
 
-  @OneToMany(() => Updoot, (updoot) => updoot.user)
-  updoots: Updoot[];
+  @OneToMany(() => Comment, (comment) => comment.author)
+  comments: Comment[];
 
   @Field(() => String)
   @CreateDateColumn()

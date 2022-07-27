@@ -21,4 +21,10 @@ export class Comment extends BaseEntity {
 
     @ManyToOne(() => Transaction, (transaction) => transaction.comments)
     transaction: Transaction;
+
+    @Field()
+    text: string;
+
+    @ManyToOne(() => User, (user) => user.comments)
+    author: User;
 }
